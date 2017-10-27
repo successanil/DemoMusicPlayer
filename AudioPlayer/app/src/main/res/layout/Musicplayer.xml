@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    tools:context="in.relsellglobal.audioplayer.MainActivity">
+
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@mipmap/wall"
+        />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:context="in.relsellglobal.audioplayer.MainActivity">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REWIND"
+            />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="84dp"
+            android:layout_height="wrap_content"
+            android:text="PLAY"
+            />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="87dp"
+            android:layout_height="46dp"
+            android:text="STOP"
+            />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="93dp"
+            android:layout_height="46dp"
+            android:text="FORWARD"
+            />
+    </LinearLayout>
+</LinearLayout>
