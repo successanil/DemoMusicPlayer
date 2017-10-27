@@ -9,6 +9,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 //changed by ashish
 
 public class navigation_activity extends AppCompatActivity
@@ -27,8 +29,8 @@ public class navigation_activity extends AppCompatActivity
 
 
     Intent serviceIntent;
-    Button play;
-    Button pause;
+    public Button play;
+    public Button pause;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,21 +39,27 @@ public class navigation_activity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //TODO inoke SongSerivice
+        //TODO invoke SongService
         serviceIntent = new Intent(this, SongService.class);
+        startService(serviceIntent);
+        final SongService songService = new SongService();
 
         play = (Button) findViewById(R.id.play);
         pause = (Button) findViewById(R.id.pause);
-//        startService(serviceIntent);
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startService(serviceIntent);
+                songService.playSong();
             }
         });
 
-
+        pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                songService.pauseSong();
+            }
+        });
 
 
 

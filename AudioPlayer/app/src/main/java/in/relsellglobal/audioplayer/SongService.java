@@ -10,6 +10,7 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 /**
@@ -18,7 +19,7 @@ import android.widget.Button;
 
 public class SongService extends Service {
 
-    public MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer;
 
 
     @Nullable
@@ -33,10 +34,17 @@ public class SongService extends Service {
 
         mediaPlayer = MediaPlayer.create(SongService.this, R.raw.song);
 
-        mediaPlayer.start();
-
         return super.onStartCommand(intent, flags, startId);
     }
+
+    public void playSong(){
+        mediaPlayer.start();
+    }
+
+    public void pauseSong(){
+        mediaPlayer.pause();
+    }
+
 
 
 
