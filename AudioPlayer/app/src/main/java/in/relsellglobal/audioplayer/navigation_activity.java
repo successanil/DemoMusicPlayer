@@ -4,10 +4,12 @@
 
 package in.relsellglobal.audioplayer;
 
+import android.support.v4.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,15 +23,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import in.relsellglobal.audioplayer.dummy.DummyContent;
 //changed by ashish
 
 public class navigation_activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,AlbumFragment.OnListFragmentInteractionListener {
 
-        Intent serviceIntent;
+        /*Intent serviceIntent;
         public Button play;
         public Button pause;
-        ListView listView;
+        ListView listView;*/
 
 
 
@@ -61,7 +68,7 @@ public class navigation_activity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        serviceIntent = new Intent(this, SongService.class);
+       // serviceIntent = new Intent(this, SongService.class);
         /*startService(serviceIntent);
         final SongService songService = new SongService();
 
@@ -83,11 +90,25 @@ public class navigation_activity extends AppCompatActivity
         });*/
 
 
-        String[] array =new String[]{"First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth"};
+        /*List<String> myList = new ArrayList<String>();
+        myList.add("First");
+        myList.add("Second");
+        myList.add("Third");
+        myList.add("Fourth");
+        myList.add("Fifth");
+        myList.add("Sixth");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.content_navigation_activity,array);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,myList);
         listView = (ListView) findViewById(R.id.list);
-        listView.setAdapter(adapter);
+        listView.setAdapter(adapter);*/
+
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.rootView,new AlbumFragment());
+        ft.commit();
+
 
 
 
@@ -148,5 +169,10 @@ public class navigation_activity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
     }
 }
