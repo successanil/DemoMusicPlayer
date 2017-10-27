@@ -11,6 +11,18 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
 
+        </activity>
+        <activity
+            android:name=".navigation_activity"
+            android:label="@string/title_activity_navigation_activity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <service
+            android:name=".SongService"
+            android:label="AndroidService" />
+
+        <activity android:name=".SplashScreen">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,16 +30,6 @@
             </intent-filter>
 
         </activity>
-        <activity
-            android:name=".navigation_activity"
-            android:label="@string/title_activity_navigation_activity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
-        <service android:name=".SongService"
-            android:label="AndroidService"/>
-
     </application>
 
 </manifest>

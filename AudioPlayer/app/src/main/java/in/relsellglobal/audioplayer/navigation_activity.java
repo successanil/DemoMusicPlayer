@@ -5,11 +5,9 @@
 package in.relsellglobal.audioplayer;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,29 +17,52 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 //changed by ashish
 
 public class navigation_activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+        Intent serviceIntent;
+        public Button play;
+        public Button pause;
+        ListView listView;
 
 
-    Intent serviceIntent;
-    public Button play;
-    public Button pause;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.song_service);
+
+        setContentView(R.layout.activity_navigation_activity);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //TODO invoke SongService
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
         serviceIntent = new Intent(this, SongService.class);
-        startService(serviceIntent);
+        /*startService(serviceIntent);
         final SongService songService = new SongService();
 
         play = (Button) findViewById(R.id.play);
@@ -59,13 +80,28 @@ public class navigation_activity extends AppCompatActivity
             public void onClick(View view) {
                 songService.pauseSong();
             }
-        });
+        });*/
+
+
+        String[] array =new String[]{"First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.content_navigation_activity,array);
+        listView = (ListView) findViewById(R.id.list);
+        listView.setAdapter(adapter);
 
 
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
