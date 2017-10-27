@@ -24,6 +24,10 @@
             </intent-filter>
 
         </activity>
+
+        <service android:name=".SongService"
+            android:label="AndroidService"/>
+
     </application>
 
 </manifest>
