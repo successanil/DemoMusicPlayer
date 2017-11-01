@@ -23,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +34,10 @@ import in.relsellglobal.audioplayer.dummy.DummyContent;
 public class navigation_activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,AlbumFragment.OnListFragmentInteractionListener {
 
-        /*Intent serviceIntent;
+        Intent serviceIntent;
         public Button play;
         public Button pause;
-        ListView listView;*/
+        ListView listView;
 
 
 
@@ -68,11 +69,11 @@ public class navigation_activity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-       // serviceIntent = new Intent(this, SongService.class);
-        /*startService(serviceIntent);
+        serviceIntent = new Intent(this, SongService.class);
+        startService(serviceIntent);
         final SongService songService = new SongService();
 
-        play = (Button) findViewById(R.id.play);
+        /*play = (Button) findViewById(R.id.play);
         pause = (Button) findViewById(R.id.pause);
 
         play.setOnClickListener(new View.OnClickListener() {
@@ -106,8 +107,9 @@ public class navigation_activity extends AppCompatActivity
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.rootView,new AlbumFragment());
+        ft.replace(R.id.contentLayout,new AlbumFragment());
         ft.commit();
+
 
 
 
@@ -173,6 +175,10 @@ public class navigation_activity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.contentLayout,new MusicPlayerFragment());
+        ft.commit();
     }
+
 }
