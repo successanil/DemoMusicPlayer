@@ -31,6 +31,7 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:text="REWIND"
             />
 
@@ -38,6 +39,7 @@
             android:id="@+id/button2"
             android:layout_width="84dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:text="PLAY"
             />
 
@@ -45,6 +47,7 @@
             android:id="@+id/button3"
             android:layout_width="87dp"
             android:layout_height="46dp"
+            android:layout_gravity="bottom"
             android:text="STOP"
             />
 
@@ -53,6 +56,7 @@
             android:layout_width="93dp"
             android:layout_height="46dp"
             android:text="FORWARD"
+            android:layout_gravity="bottom"
             />
     </LinearLayout>
 </LinearLayout>
