@@ -87,15 +87,14 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<Song> fetchSongData(String SongDescription) {
+    public ArrayList<Song> fetchSongData() {
 
 
         ArrayList<Song> songArrayList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(Song_TABLE, new String[] { KEY_ID,
-                        KEY_NAME, KEY_SongDescription,KEY_Category }, KEY_SongDescription + "=?",
-                new String[] { String.valueOf(SongDescription) }, null, null, null, null);
+                        KEY_NAME, KEY_SongDescription,KEY_Category }, null , null, null, null, null);
         if (cursor != null){
             cursor.moveToFirst();
             do{
