@@ -10,6 +10,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 /**
  * Created by rahul on 1/11/17.
  */
@@ -85,22 +87,32 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
-    public Song fetchSongData(String SongDescription) {
+    public ArrayList<Song> fetchSongData(String SongDescription) {
 
+
+        ArrayList<Song> songArrayList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(Song_TABLE, new String[] { KEY_ID,
                         KEY_NAME, KEY_SongDescription,KEY_Category }, KEY_SongDescription + "=?",
                 new String[] { String.valueOf(SongDescription) }, null, null, null, null);
-        if (cursor != null)
+        if (cursor != null){
             cursor.moveToFirst();
-        Song song = new Song();
-        song.setSongId(cursor.getInt(cursor.getColumnIndexOrThrow(KEY_ID)));
-        song.setSongName(cursor.getString(cursor.getColumnIndexOrThrow(KEY_NAME)));
-        song.setSongDescription(cursor.getString(cursor.getColumnIndexOrThrow(KEY_SongDescription)));
-        song.setCategory(cursor.getString(cursor.getColumnIndexOrThrow(KEY_Category)));
+            do{
+                Song song = new Song();
+                song.setSongId(cursor.getInt(cursor.getColumnIndexOrThrow(KEY_ID)));
+                song.setSongName(cursor.getString(cursor.getColumnIndexOrThrow(KEY_NAME)));
+                song.setSongDescription(cursor.getString(cursor.getColumnIndexOrThrow(KEY_SongDescription)));
+                song.setCategory(cursor.getString(cursor.getColumnIndexOrThrow(KEY_Category)));
 
-        return song;
+                songArrayList.add(song);
+
+            }while(cursor.moveToNext());
+
+        }
+
+
+        return songArrayList;
     }
 
 
