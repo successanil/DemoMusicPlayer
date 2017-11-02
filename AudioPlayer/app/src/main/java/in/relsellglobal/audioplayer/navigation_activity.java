@@ -4,6 +4,7 @@
 
 package in.relsellglobal.audioplayer;
 
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,12 +29,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.relsellglobal.audioplayer.Songtable.DBHandler;
+import in.relsellglobal.audioplayer.Songtable.Song;
 import in.relsellglobal.audioplayer.dummy.DummyContent;
 //changed by ashish
 
 public class navigation_activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,AlbumFragment.OnListFragmentInteractionListener {
 
+        public static ArrayList<Song> songsFromDatabase;
         Intent serviceIntent;
         public Button play;
         public Button pause;
@@ -69,11 +73,11 @@ public class navigation_activity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        serviceIntent = new Intent(this, SongService.class);
+        /* serviceIntent = new Intent(this, SongService.class);
         startService(serviceIntent);
         final SongService songService = new SongService();
 
-        /*play = (Button) findViewById(R.id.play);
+        play = (Button) findViewById(R.id.play);
         pause = (Button) findViewById(R.id.pause);
 
         play.setOnClickListener(new View.OnClickListener() {
@@ -104,11 +108,7 @@ public class navigation_activity extends AppCompatActivity
         listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);*/
 
-
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.contentLayout,new AlbumFragment());
-        ft.commit();
+        new FetchValues().execute();
 
 
 
@@ -179,6 +179,26 @@ public class navigation_activity extends AppCompatActivity
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.contentLayout,new MusicPlayerFragment());
         ft.commit();
+    }
+
+
+    public class FetchValues extends AsyncTask<Void, Void, ArrayList<Song>>{
+        @Override
+        protected void onPostExecute(ArrayList<Song> songsInList) {
+            super.onPostExecute(songsInList);
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.contentLayout,new AlbumFragment());
+            ft.commit();
+        }
+
+        @Override
+        protected ArrayList<Song> doInBackground(Void... voids) {
+            DBHandler dbHandler = new DBHandler(navigation_activity.this);
+            songsFromDatabase = dbHandler.fetchSongData();
+            return songsFromDatabase;
+        }
     }
 
 }
