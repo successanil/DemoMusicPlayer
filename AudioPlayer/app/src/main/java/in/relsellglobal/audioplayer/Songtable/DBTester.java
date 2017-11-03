@@ -24,9 +24,9 @@ public class DBTester extends AppCompatActivity {
        //setContentView(R.layout.activity_main);
         db = new DBHandler(DBTester.this);
 
-        //new DBWriter().execute();
+        new DBWriter().execute();
 
-        new DBReader().execute();
+        //new DBReader().execute();
     }
     public class DBWriter extends AsyncTask<Void,Void,Void> {
 
@@ -42,6 +42,7 @@ public class DBTester extends AppCompatActivity {
             song2.setSongDescription("/storage/emulated/0/Download/feeling_good.mp3");
             db.addSongData(song2);
 
+
             return null;
         }
     }
@@ -51,8 +52,8 @@ public class DBTester extends AppCompatActivity {
 
         @Override
         protected Song doInBackground(Void... params) {
-            Song song = db.fetchSongData("/storage/emulated/0/Download/feeling_good.mp3");
-            return song;
+            //Song song = db.fetchSongData("/storage/emulated/0/Download/feeling_good.mp3");
+            return null;
         }
 
         @Override

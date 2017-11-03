@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.relsellglobal.audioplayer">
+    
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -15,14 +17,7 @@
         <activity
             android:name=".navigation_activity"
             android:label="@string/title_activity_navigation_activity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <service
-            android:name=".SongService"
-            android:label="AndroidService" />
-
-        <activity
-            android:name=".SplashScreen">
+            android:theme="@style/AppTheme.NoActionBar">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +26,23 @@
             </intent-filter>
 
         </activity>
+
+        <service
+            android:name=".SongService"
+            android:label="AndroidService" />
+
+        <activity
+            android:name=".SplashScreen">
+
+
+
+        </activity>
+
+        <activity android:name=".Songtable.DBTester">
+
+
+        </activity>
+        
     </application>
 
 </manifest>

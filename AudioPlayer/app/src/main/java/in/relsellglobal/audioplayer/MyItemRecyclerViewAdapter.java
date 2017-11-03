@@ -4,6 +4,8 @@
 
 package in.relsellglobal.audioplayer;
 
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +21,7 @@ import in.relsellglobal.audioplayer.AlbumFragment.OnListFragmentInteractionListe
 import in.relsellglobal.audioplayer.Songtable.Song;
 import in.relsellglobal.audioplayer.dummy.DummyContent.DummyItem;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,10 +34,12 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     private final ArrayList<Song> mValues;
     private final OnListFragmentInteractionListener mListener;
+    private Context context;
 
-    public MyItemRecyclerViewAdapter(ArrayList<Song> items, OnListFragmentInteractionListener listener) {
+    public MyItemRecyclerViewAdapter(Context context, ArrayList<Song> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
+        this.context = context;
     }
 
     @Override
@@ -49,18 +54,17 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         holder.mItem = mValues.get(position);
         holder.mContentView.setText(holder.mItem.getSongName());
 
-
-
         holder.play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    //mListener.onListFragmentInteraction(holder.mItem);
-                }
+                MediaPlayer mp = MediaPlayer.create(context, R.raw.song);
+                mp.start();
             }
         });
+
+
+
+
     }
 
     @Override
