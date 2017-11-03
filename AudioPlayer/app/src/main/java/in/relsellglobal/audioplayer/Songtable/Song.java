@@ -12,7 +12,7 @@ public class Song {
     private int SongId;
     private String SongName;
     private String SongDescription;
-    private String Category;
+    private String Album;
 
 
     public int getSongId() {
@@ -39,11 +39,13 @@ public class Song {
         this.SongDescription = SongDescription;
     }
 
-    public String getCategory() {
-        return Category;
+    public String getAlbum() {
+        return Album;
     }
 
-    public void  setCategory(String Category) {
-        this.Category = Category;
+    public void  setAlbum(String Album) {
+        this.Album = Album;
     }
 }
+
+
