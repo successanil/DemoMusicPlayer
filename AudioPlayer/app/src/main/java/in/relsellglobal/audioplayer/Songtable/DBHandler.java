@@ -25,7 +25,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "SongName";
     private static final String KEY_SongDescription = "SongDescription";
-    private static final String KEY_Category="Category";
+    private static final String KEY_Album="Album";
 
 
 
@@ -39,7 +39,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_CUSTOMER_TABLE = "CREATE TABLE " + Song_TABLE + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_SongDescription + " STRING, " + KEY_Category+" TEXT)";
+                + KEY_SongDescription + " STRING, " + KEY_Album+" TEXT)";
         db.execSQL(CREATE_CUSTOMER_TABLE);
     }
 
@@ -57,7 +57,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_NAME,obj.getSongName());
         values.put(KEY_SongDescription,obj.getSongDescription());
-        values.put(KEY_Category,obj.getCategory());
+        values.put(KEY_Album,obj.getAlbum());
 
         // Inserting Row
         db.insert(Song_TABLE, null, values);
@@ -94,7 +94,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(Song_TABLE, new String[] { KEY_ID,
-                        KEY_NAME, KEY_SongDescription,KEY_Category }, null , null, null, null, null);
+                        KEY_NAME, KEY_SongDescription,KEY_Album }, null , null, null, null, null);
         if (cursor != null){
             cursor.moveToFirst();
             do{
@@ -102,7 +102,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 song.setSongId(cursor.getInt(cursor.getColumnIndexOrThrow(KEY_ID)));
                 song.setSongName(cursor.getString(cursor.getColumnIndexOrThrow(KEY_NAME)));
                 song.setSongDescription(cursor.getString(cursor.getColumnIndexOrThrow(KEY_SongDescription)));
-                song.setCategory(cursor.getString(cursor.getColumnIndexOrThrow(KEY_Category)));
+                song.setAlbum(cursor.getString(cursor.getColumnIndexOrThrow(KEY_Album)));
 
                 songArrayList.add(song);
 
