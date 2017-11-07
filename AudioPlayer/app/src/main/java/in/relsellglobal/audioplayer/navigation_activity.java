@@ -34,7 +34,6 @@ import in.relsellglobal.audioplayer.dummy.DummyContent;
 public class navigation_activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SongListFragment.OnListFragmentInteractionListener {
 
-        public static ArrayList<Song> songsFromDatabase;
         Intent serviceIntent;
         public Button play;
         public Button pause;
@@ -42,32 +41,38 @@ public class navigation_activity extends AppCompatActivity
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.fragment_album_detail);
+        setContentView(R.layout.activity_navigation_activity);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);*/
+
+        FragmentManager fm1 = getSupportFragmentManager();
+        FragmentTransaction ft1 = fm1.beginTransaction();
+        ft1.replace(R.id.contentLayout, new AlbumDetailFragment());
+        ft1.commit();
 
 
         /* serviceIntent = new Intent(this, SongService.class);
@@ -105,7 +110,7 @@ public class navigation_activity extends AppCompatActivity
         listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);*/
 
-        new FetchValues().execute();
+
 
 
 
@@ -174,35 +179,11 @@ public class navigation_activity extends AppCompatActivity
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.contentLayout,new MusicPlayerFragment());
+        ft.replace(R.id.album_detail_root,new MusicPlayerFragment());
         ft.commit();
     }
 
 
-    public class FetchValues extends AsyncTask<Void, Void, ArrayList<Song>>{
-        @Override
-        protected void onPostExecute(ArrayList<Song> songsInList) {
-            super.onPostExecute(songsInList);
 
-            FragmentManager fm2 = getSupportFragmentManager();
-            FragmentTransaction ft2 = fm2.beginTransaction();
-            ft2.replace(R.id.f1_holder, new AlbumImage());
-            ft2.commit();
-
-
-            FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.f2_holder,new SongListFragment());
-            ft.commit();
-        }
-
-        @Override
-        protected ArrayList<Song> doInBackground(Void... voids) {
-            DBAlbumHandler dbAlbumHandler = new DBAlbumHandler(navigation_activity.this);
-            DBHandler dbHandler = new DBHandler(navigation_activity.this);
-            songsFromDatabase = dbHandler.fetchSongData();
-            return songsFromDatabase;
-        }
-    }
 
 }

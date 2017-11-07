@@ -6,7 +6,9 @@ package in.relsellglobal.audioplayer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,9 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import in.relsellglobal.audioplayer.Songtable.DBAlbumHandler;
+import in.relsellglobal.audioplayer.Songtable.DBHandler;
+import in.relsellglobal.audioplayer.Songtable.Song;
 import in.relsellglobal.audioplayer.dummy.DummyContent;
 import in.relsellglobal.audioplayer.dummy.DummyContent.DummyItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +34,10 @@ import java.util.List;
  * interface.
  */
 public class SongListFragment extends Fragment {
+
+    RecyclerView recyclerView;
+
+    public static ArrayList<Song> songsFromDatabase;
 
     // TODO: Customize parameters
     private int mColumnCount = 1;
@@ -50,18 +60,18 @@ public class SongListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_album_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(getActivity(),navigation_activity.songsFromDatabase, mListener));
+            new FetchValues().execute();
         }
 
         return view;
@@ -86,6 +96,15 @@ public class SongListFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+
+
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -99,5 +118,26 @@ public class SongListFragment extends Fragment {
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
+    }
+
+    public class FetchValues extends AsyncTask<Void, Void, ArrayList<Song>> {
+        @Override
+        protected void onPostExecute(ArrayList<Song> songsInList) {
+            super.onPostExecute(songsInList);
+            if(recyclerView!=null){
+                recyclerView.setAdapter(new MyItemRecyclerViewAdapter(getActivity(),songsInList, mListener));
+
+            }
+
+
+        }
+
+        @Override
+        protected ArrayList<Song> doInBackground(Void... voids) {
+            DBAlbumHandler dbAlbumHandler = new DBAlbumHandler(getActivity());
+            DBHandler dbHandler = new DBHandler(getActivity());
+            songsFromDatabase = dbHandler.fetchSongData();
+            return songsFromDatabase;
+        }
     }
 }
