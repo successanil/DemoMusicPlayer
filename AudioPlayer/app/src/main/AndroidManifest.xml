@@ -19,12 +19,6 @@
             android:label="@string/title_activity_navigation_activity"
             android:theme="@style/AppTheme.NoActionBar">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
 
         <service
@@ -35,10 +29,19 @@
             android:name=".SplashScreen">
 
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
 
         </activity>
 
         <activity android:name=".Songtable.DBTester">
+
+
+
 
 
         </activity>

@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="in.relsellglobal.audioplayer.AlbumFragment"
+    tools:context="in.relsellglobal.audioplayer.SongListFragment"
     tools:listitem="@layout/fragment_item" />

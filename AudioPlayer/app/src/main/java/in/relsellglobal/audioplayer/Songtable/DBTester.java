@@ -24,9 +24,9 @@ public class DBTester extends AppCompatActivity {
        //setContentView(R.layout.activity_main);
         db = new DBHandler(DBTester.this);
 
-       // new DBWriter().execute();
+        new DBWriter().execute();
 
-        new DBReader().execute();
+      //  new DBReader().execute();
     }
     public class DBWriter extends AsyncTask<Void,Void,Void> {
 

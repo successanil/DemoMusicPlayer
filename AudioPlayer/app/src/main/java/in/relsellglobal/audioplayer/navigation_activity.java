@@ -20,22 +20,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import in.relsellglobal.audioplayer.Songtable.DBAlbumHandler;
 import in.relsellglobal.audioplayer.Songtable.DBHandler;
 import in.relsellglobal.audioplayer.Songtable.Song;
 import in.relsellglobal.audioplayer.dummy.DummyContent;
 //changed by ashish
 
 public class navigation_activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,AlbumFragment.OnListFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,SongListFragment.OnListFragmentInteractionListener {
 
         public static ArrayList<Song> songsFromDatabase;
         Intent serviceIntent;
@@ -49,7 +46,7 @@ public class navigation_activity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_navigation_activity);
+        setContentView(R.layout.fragment_album_detail);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -187,14 +184,21 @@ public class navigation_activity extends AppCompatActivity
         protected void onPostExecute(ArrayList<Song> songsInList) {
             super.onPostExecute(songsInList);
 
+            FragmentManager fm2 = getSupportFragmentManager();
+            FragmentTransaction ft2 = fm2.beginTransaction();
+            ft2.replace(R.id.f1_holder, new AlbumImage());
+            ft2.commit();
+
+
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.contentLayout,new AlbumFragment());
+            ft.replace(R.id.f2_holder,new SongListFragment());
             ft.commit();
         }
 
         @Override
         protected ArrayList<Song> doInBackground(Void... voids) {
+            DBAlbumHandler dbAlbumHandler = new DBAlbumHandler(navigation_activity.this);
             DBHandler dbHandler = new DBHandler(navigation_activity.this);
             songsFromDatabase = dbHandler.fetchSongData();
             return songsFromDatabase;
