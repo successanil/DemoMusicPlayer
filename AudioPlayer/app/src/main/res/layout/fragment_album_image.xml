@@ -13,7 +13,7 @@
         android:layout_marginBottom="230dp"
         android:layout_marginRight="1dp"
         android:layout_marginLeft="1dp"
-        android:src="@mipmap/Audio"/>
+        android:src="@mipmap/audio"/>
 
     <TextView
         android:layout_width="wrap_content"
