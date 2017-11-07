@@ -2,25 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context="in.relsellglobal.audioplayer.AlbumImage">
 
     <!-- TODO: Update blank fragment layout -->
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="230dp"
-        android:layout_marginRight="1dp"
-        android:layout_marginLeft="1dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
         android:src="@mipmap/Audio"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SlideShow"
         android:singleLine="true"
         android:ellipsize="marquee"
+        android:layout_margin="5dp"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:textColor="#ff4500"

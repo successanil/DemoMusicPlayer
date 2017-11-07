@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 public class AlbumImage extends Fragment {
 
 
+
     public AlbumImage() {
         // Required empty public constructor
     }
