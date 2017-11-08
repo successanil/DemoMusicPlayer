@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,19 +9,15 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:src="@mipmap/audio"/>
+        android:layout_centerInParent="true"
+        android:src="@mipmap/audio"
+        android:id="@+id/audio"/>
 
-    <TextView
+    <WebView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/SlideShow"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:layout_margin="5dp"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:scrollHorizontally="true"
-        android:textColor="#ff4500"
-        android:text="FEELING GOOD"/>
+        android:id="@+id/web"
+        android:layout_below="@+id/audio"
+        ></WebView>
 
-</LinearLayout>
+</RelativeLayout>

@@ -2,13 +2,10 @@
  * Copyright (c) 2017. Relsell Global
  */
 
-package in.relsellglobal.audioplayer;
+package in.relsellglobal.audioplayer.Album;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,15 +13,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import in.relsellglobal.audioplayer.Songtable.DBAlbumHandler;
-import in.relsellglobal.audioplayer.Songtable.DBHandler;
-import in.relsellglobal.audioplayer.Songtable.Song;
-import in.relsellglobal.audioplayer.dummy.DummyContent;
-import in.relsellglobal.audioplayer.dummy.DummyContent.DummyItem;
+import in.relsellglobal.audioplayer.R;
+import in.relsellglobal.audioplayer.Album.dummy.DummyContent;
+import in.relsellglobal.audioplayer.Album.dummy.DummyContent.DummyItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,50 +26,58 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class SongListFragment extends Fragment {
+public class ItemFragment extends Fragment {
 
-    RecyclerView recyclerView;
-
-    public static ArrayList<Song> songsFromDatabase;
-
+    // TODO: Customize parameter argument names
+    private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private int mColumnCount = 1;
-
+    private int mColumnCount = 2;
     private OnListFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public SongListFragment() {
+    public ItemFragment() {
+    }
+
+    // TODO: Customize parameter initialization
+    @SuppressWarnings("unused")
+    public static ItemFragment newInstance(int columnCount) {
+        ItemFragment fragment = new ItemFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_COLUMN_COUNT, columnCount);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (getArguments() != null) {
+            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_item_list2, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            recyclerView = (RecyclerView) view;
+            RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            new FetchValues().execute();
+            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
-
         return view;
     }
-
 
 
     @Override
@@ -96,15 +97,6 @@ public class SongListFragment extends Fragment {
         mListener = null;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-
-
-
-    }
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -117,27 +109,6 @@ public class SongListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Song item);
-    }
-
-    public class FetchValues extends AsyncTask<Void, Void, ArrayList<Song>> {
-        @Override
-        protected void onPostExecute(ArrayList<Song> songsInList) {
-            super.onPostExecute(songsInList);
-            if(recyclerView!=null){
-                recyclerView.setAdapter(new MyItemRecyclerViewAdapter(getActivity(),songsInList, mListener));
-
-            }
-
-
-        }
-
-        @Override
-        protected ArrayList<Song> doInBackground(Void... voids) {
-            DBAlbumHandler dbAlbumHandler = new DBAlbumHandler(getActivity());
-            DBHandler dbHandler = new DBHandler(getActivity());
-            songsFromDatabase = dbHandler.fetchSongData();
-            return songsFromDatabase;
-        }
+        void onListFragmentInteraction(DummyItem item);
     }
 }

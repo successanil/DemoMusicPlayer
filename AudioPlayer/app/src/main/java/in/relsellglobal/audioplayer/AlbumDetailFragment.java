@@ -37,16 +37,16 @@ public class AlbumDetailFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        FragmentManager fm1 = getFragmentManager();
+        FragmentTransaction ft1 = fm1.beginTransaction();
+        ft1.replace(R.id.f1_holder, new AlbumImage());
+        ft1.commit();
+
+
         FragmentManager fm2 = getFragmentManager();
         FragmentTransaction ft2 = fm2.beginTransaction();
-        ft2.replace(R.id.f1_holder, new AlbumImage());
+        ft2.replace(R.id.f2_holder,new SongListFragment());
         ft2.commit();
-
-
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.f2_holder,new SongListFragment());
-        ft.commit();
 
     }
 }
