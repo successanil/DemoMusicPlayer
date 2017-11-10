@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            intent = new Intent(MainActivity.this, navigation_activity.class);
+            intent = new Intent(MainActivity.this, NavigationActivity.class);
             startActivity(intent);
             finish();
         }

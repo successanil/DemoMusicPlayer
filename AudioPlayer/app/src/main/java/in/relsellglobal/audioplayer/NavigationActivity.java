@@ -25,7 +25,7 @@ import in.relsellglobal.audioplayer.uxfragments.AlbumDetailFragment;
 import in.relsellglobal.audioplayer.uxfragments.MusicPlayerFragment;
 //changed by ashish
 
-public class navigation_activity extends AppCompatActivity
+public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,ActivityListener {
 
         Intent serviceIntent;
