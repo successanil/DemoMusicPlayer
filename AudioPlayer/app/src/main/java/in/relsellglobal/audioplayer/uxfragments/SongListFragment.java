@@ -22,7 +22,6 @@ import android.view.ViewGroup;
 
 import in.relsellglobal.audioplayer.ActivityListener;
 import in.relsellglobal.audioplayer.R;
-import in.relsellglobal.audioplayer.database.DBAlbumHandler;
 import in.relsellglobal.audioplayer.database.DBHandler;
 import in.relsellglobal.audioplayer.pojo.Song;
 

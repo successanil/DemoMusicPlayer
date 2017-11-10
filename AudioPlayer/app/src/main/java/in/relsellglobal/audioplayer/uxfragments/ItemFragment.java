@@ -21,7 +21,6 @@ import android.view.ViewGroup;
 
 import in.relsellglobal.audioplayer.R;
 import in.relsellglobal.audioplayer.pojo.Album;
-import in.relsellglobal.audioplayer.database.DBAlbumHandler;
 
 import java.util.ArrayList;
 
