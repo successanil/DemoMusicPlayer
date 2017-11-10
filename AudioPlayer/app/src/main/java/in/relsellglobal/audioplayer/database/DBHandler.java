@@ -65,10 +65,10 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_CUSTOMER_TABLE = "CREATE TABLE " + SongTable.TABLE + "("
+        String CREATE_SONG_TABLE = "CREATE TABLE " + SongTable.TABLE + "("
                 + SongTable.KEY_ID + " INTEGER PRIMARY KEY," + SongTable.KEY_NAME + " TEXT,"
                 + SongTable.KEY_SongDescription + " STRING, " + SongTable.KEY_Album+" TEXT)";
-        db.execSQL(CREATE_CUSTOMER_TABLE);
+        db.execSQL(CREATE_SONG_TABLE);
 
         String CREATE_Album_TABLE = "CREATE TABLE " + AlbumTable.TABLE + "("
                 + AlbumTable.KEY_ID + " INTEGER PRIMARY KEY," + AlbumTable.KEY_NAME + " TEXT,"
