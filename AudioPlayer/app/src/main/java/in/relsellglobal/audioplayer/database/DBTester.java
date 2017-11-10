@@ -2,12 +2,14 @@
  * Copyright (c) 2017. Relsell Global
  */
 
-package in.relsellglobal.audioplayer.Songtable;
+package in.relsellglobal.audioplayer.database;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+
+import in.relsellglobal.audioplayer.pojo.Song;
 
 /**
  * Created by rahul on 2/11/17.

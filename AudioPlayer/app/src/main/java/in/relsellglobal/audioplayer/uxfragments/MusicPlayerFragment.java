@@ -2,7 +2,11 @@
  * Copyright (c) 2017. Relsell Global
  */
 
-package in.relsellglobal.audioplayer;
+/*
+ * Copyright (c) 2017. Relsell Global
+ */
+
+package in.relsellglobal.audioplayer.uxfragments;
 
 
 import android.os.Bundle;
@@ -11,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import in.relsellglobal.audioplayer.R;
 
 /**
  * A simple {@link Fragment} subclass.

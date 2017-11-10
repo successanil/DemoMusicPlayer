@@ -2,13 +2,17 @@
  * Copyright (c) 2017. Relsell Global
  */
 
-package in.relsellglobal.audioplayer.Songtable;
+/*
+ * Copyright (c) 2017. Relsell Global
+ */
+
+package in.relsellglobal.audioplayer.pojo;
 
 /**
  * Created by rahul on 1/11/17.
  */
 
-public class Song {
+public class Song implements PojoInterface{
     private int SongId;
     private String SongName;
     private String SongDescription;

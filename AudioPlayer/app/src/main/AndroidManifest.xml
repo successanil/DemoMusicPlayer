@@ -38,7 +38,7 @@
 
         </activity>
 
-        <activity android:name=".Songtable.DBTester">
+        <activity android:name=".database.DBTester">
 
 
 

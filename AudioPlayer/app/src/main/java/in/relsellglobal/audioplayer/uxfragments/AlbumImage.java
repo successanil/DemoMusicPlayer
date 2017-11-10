@@ -2,7 +2,11 @@
  * Copyright (c) 2017. Relsell Global
  */
 
-package in.relsellglobal.audioplayer;
+/*
+ * Copyright (c) 2017. Relsell Global
+ */
+
+package in.relsellglobal.audioplayer.uxfragments;
 
 
 import android.os.Bundle;
@@ -14,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.TextView;
+
+import in.relsellglobal.audioplayer.R;
 
 
 /**
@@ -35,12 +41,6 @@ public class AlbumImage extends Fragment {
         View v = inflater.inflate(R.layout.fragment_album_image, container, false);
 
 
-        /*TextView textView = (TextView) v.findViewById(R.id.SlideShow);
-        textView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-        textView.setText("Feeling Good...");
-        textView.setSelected(true);
-        textView.setSingleLine(true);*/
-
         WebView webView = (WebView) v.findViewById(R.id.web);
         String summary = "<html><FONT color='#F3383F' FACE='courier'>"+
                 "<marquee behavior='scroll' direction='left' scrollamount=5>"+
@@ -55,8 +55,6 @@ public class AlbumImage extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-
 
     }
 }

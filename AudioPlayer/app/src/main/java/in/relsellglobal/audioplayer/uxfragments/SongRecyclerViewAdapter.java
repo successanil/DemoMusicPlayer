@@ -2,7 +2,11 @@
  * Copyright (c) 2017. Relsell Global
  */
 
-package in.relsellglobal.audioplayer;
+/*
+ * Copyright (c) 2017. Relsell Global
+ */
+
+package in.relsellglobal.audioplayer.uxfragments;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -13,24 +17,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import in.relsellglobal.audioplayer.SongListFragment.OnListFragmentInteractionListener;
-import in.relsellglobal.audioplayer.Songtable.Song;
-import in.relsellglobal.audioplayer.dummy.DummyContent.DummyItem;
+import in.relsellglobal.audioplayer.ActivityListener;
+import in.relsellglobal.audioplayer.R;
+import in.relsellglobal.audioplayer.pojo.PojoInterface;
+import in.relsellglobal.audioplayer.pojo.Song;
 
 import java.util.ArrayList;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
-public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
+
+public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongRecyclerViewAdapter.ViewHolder> {
 
     private final ArrayList<Song> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final ActivityListener mListener;
     private Context context;
 
-    public MyItemRecyclerViewAdapter(Context context, ArrayList<Song> items, OnListFragmentInteractionListener listener) {
+    public SongRecyclerViewAdapter(Context context, ArrayList<Song> items, ActivityListener listener) {
         mValues = items;
         mListener = listener;
         this.context = context;
@@ -60,7 +61,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             @Override
             public void onClick(View view) {
                 if(null != mListener){
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    PojoInterface pojoInterface = (PojoInterface)holder.mItem;
+                    mListener.onListFragmentInteration(pojoInterface);
                 }
             }
         });

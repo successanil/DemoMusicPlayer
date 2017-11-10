@@ -2,7 +2,7 @@
  * Copyright (c) 2017. Relsell Global
  */
 
-package in.relsellglobal.audioplayer.Songtable;
+package in.relsellglobal.audioplayer.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,6 +11,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+
+import in.relsellglobal.audioplayer.pojo.Song;
 
 /**
  * Created by rahul on 1/11/17.

@@ -4,18 +4,13 @@
 
 package in.relsellglobal.audioplayer;
 
-import android.os.AsyncTask;
 import android.support.v4.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -23,16 +18,15 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
-import in.relsellglobal.audioplayer.Songtable.DBAlbumHandler;
-import in.relsellglobal.audioplayer.Songtable.DBHandler;
-import in.relsellglobal.audioplayer.Songtable.Song;
-import in.relsellglobal.audioplayer.dummy.DummyContent;
+import in.relsellglobal.audioplayer.pojo.Album;
+import in.relsellglobal.audioplayer.pojo.PojoInterface;
+import in.relsellglobal.audioplayer.pojo.Song;
+import in.relsellglobal.audioplayer.uxfragments.AlbumDetailFragment;
+import in.relsellglobal.audioplayer.uxfragments.MusicPlayerFragment;
 //changed by ashish
 
 public class navigation_activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,SongListFragment.OnListFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,ActivityListener {
 
         Intent serviceIntent;
         public Button play;
@@ -175,15 +169,22 @@ public class navigation_activity extends AppCompatActivity
         return true;
     }
 
+
+
+
     @Override
-    public void onListFragmentInteraction(Song item) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.album_detail_root,new MusicPlayerFragment());
-        ft.commit();
+    public void onListFragmentInteration(PojoInterface pojoInterface) {
+
+        if(pojoInterface instanceof Album) {
+
+
+
+        } else if(pojoInterface instanceof Song) {
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.album_detail_root,new MusicPlayerFragment());
+            ft.commit();
+        }
+
     }
-
-
-
-
 }
