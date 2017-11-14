@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import in.relsellglobal.audioplayer.database.DBTester;
+
 public class MainActivity extends AppCompatActivity {
 
     Intent intent;
@@ -37,10 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            intent = new Intent(MainActivity.this, NavigationActivity.class);
-            startActivity(intent);
-            finish();
+
         }
     }
 }

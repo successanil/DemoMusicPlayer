@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#B3C1C2"
-    android:layout_marginTop="8dp"
-    android:elevation="10dp"
+    android:layout_marginBottom="16dp"
+    android:layout_marginEnd="16dp"
+    android:elevation="8dp"
     android:gravity="center"
     android:id="@+id/mainAlbum">
 
