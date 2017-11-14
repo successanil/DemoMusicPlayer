@@ -8,8 +8,9 @@
     <!-- TODO: Update blank fragment layout -->
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:scaleType="fitXY"
         android:src="@mipmap/audio"
         android:id="@+id/audio"/>
 
@@ -17,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/web"
-        android:layout_below="@+id/audio"
+        android:layout_alignParentBottom="true"
         ></WebView>
 
 </RelativeLayout>

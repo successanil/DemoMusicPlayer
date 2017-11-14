@@ -2,6 +2,10 @@
  * Copyright (c) 2017. Relsell Global
  */
 
+/*
+ * Copyright (c) 2017. Relsell Global
+ */
+
 package in.relsellglobal.audioplayer;
 
 import android.support.v4.app.FragmentManager;
@@ -17,11 +21,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import in.relsellglobal.audioplayer.pojo.Album;
 import in.relsellglobal.audioplayer.pojo.PojoInterface;
 import in.relsellglobal.audioplayer.pojo.Song;
 import in.relsellglobal.audioplayer.uxfragments.AlbumDetailFragment;
+import in.relsellglobal.audioplayer.uxfragments.AlbumListFragment;
 import in.relsellglobal.audioplayer.uxfragments.MusicPlayerFragment;
 //changed by ashish
 
@@ -65,7 +71,8 @@ public class NavigationActivity extends AppCompatActivity
 
         FragmentManager fm1 = getSupportFragmentManager();
         FragmentTransaction ft1 = fm1.beginTransaction();
-        ft1.replace(R.id.contentLayout, new AlbumDetailFragment());
+        ft1.replace(R.id.contentLayout, new AlbumListFragment());
+
         ft1.commit();
 
 
@@ -177,12 +184,19 @@ public class NavigationActivity extends AppCompatActivity
 
         if(pojoInterface instanceof Album) {
 
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.contentLayout,new AlbumDetailFragment());
+            ft.addToBackStack(null);
+            ft.commit();
 
 
         } else if(pojoInterface instanceof Song) {
+            Toast.makeText(this, "Just clicked the song", Toast.LENGTH_SHORT).show();
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.album_detail_root,new MusicPlayerFragment());
+            ft.replace(R.id.contentLayout,new MusicPlayerFragment());
+            ft.addToBackStack(null);
             ft.commit();
         }
 

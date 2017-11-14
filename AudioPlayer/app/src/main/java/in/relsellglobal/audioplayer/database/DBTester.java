@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import in.relsellglobal.audioplayer.pojo.Album;
 import in.relsellglobal.audioplayer.pojo.Song;
 
 /**
@@ -34,6 +35,12 @@ public class DBTester extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
+
+            Album album1 = new Album();
+            album1.setAlbumName("Michel Buble");
+            db.addAlbumData(album1);
+
+
             Song song1 = new Song();
             song1.setSongName("Feeling Good");
             song1.setSongDescription("/storage/emulated/0/Download/feeling_good.mp3");
@@ -43,8 +50,15 @@ public class DBTester extends AppCompatActivity {
             Song song2 = new Song();
             song2.setSongName("Sorry");
             song2.setSongDescription("/storage/emulated/0/Download/feeling_good.mp3");
-            song2.setAlbum("2");
+            song2.setAlbum("1");
             db.addSongData(song2);
+
+
+
+
+
+
+
 
             return null;
         }

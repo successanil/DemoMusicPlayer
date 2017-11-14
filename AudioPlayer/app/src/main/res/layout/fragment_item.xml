@@ -2,25 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:background="@color/colorPrimaryDark"
     android:orientation="horizontal">
 
     <ImageView
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="2dp"
+        android:id="@+id/songAnchor"
         android:src="@mipmap/navigationicon" />
 
     <ImageView
         android:layout_width="0dp"
         android:layout_weight="1"
+        android:id="@+id/songImage"
         android:layout_height="match_parent"
         android:src="@mipmap/westlife" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="2"
         android:layout_height="match_parent"
-        android:text="Feeling Good"
-        android:layout_gravity="center"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/songName"
+            android:layout_height="wrap_content"
+            android:text="Feeling Good"
+            android:textColor="#fff" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*****"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FAE840"/>
+
+    </LinearLayout>
 
 </LinearLayout>

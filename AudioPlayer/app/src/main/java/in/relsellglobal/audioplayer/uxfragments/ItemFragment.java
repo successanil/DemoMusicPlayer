@@ -19,7 +19,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import in.relsellglobal.audioplayer.ActivityListener;
 import in.relsellglobal.audioplayer.R;
+import in.relsellglobal.audioplayer.database.DBHandler;
 import in.relsellglobal.audioplayer.pojo.Album;
 
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ public class ItemFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 2;
-    private OnListFragmentInteractionListener mListener;
+    private ActivityListener mListener;
 
     public ArrayList<Album> album;
 
@@ -93,7 +95,7 @@ public class ItemFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+            mListener = (ActivityListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
@@ -133,9 +135,8 @@ public class ItemFragment extends Fragment {
 
         @Override
         protected ArrayList<Album> doInBackground(Void... voids) {
-            DBAlbumHandler dbAlbumHandler = new DBAlbumHandler(getActivity());
-            DBAlbumHandler dbHandler = new DBAlbumHandler((getActivity()));
-            album = dbAlbumHandler.fetchAlbumData();
+            DBHandler dbHandler = new DBHandler((getActivity()));
+            album = dbHandler.fetchAlbumData();
             return album;
         }
     }

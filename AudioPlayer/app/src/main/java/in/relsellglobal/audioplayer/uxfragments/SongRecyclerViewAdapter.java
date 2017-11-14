@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import in.relsellglobal.audioplayer.ActivityListener;
@@ -47,15 +48,17 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongRecyclerVi
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mContentView.setText(holder.mItem.getSongName());
+        holder.mSongName.setText(holder.mItem.getSongName());
+//        holder.mSongImage.setImageDrawable(context.getResources().getDrawable(R.mipmap.navigationicon));
 
-        holder.play.setOnClickListener(new View.OnClickListener() {
+
+        /*holder.play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MediaPlayer mp = MediaPlayer.create(context, R.raw.song);
                 mp.start();
             }
-        });
+        });*/
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +66,8 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongRecyclerVi
                 if(null != mListener){
                     PojoInterface pojoInterface = (PojoInterface)holder.mItem;
                     mListener.onListFragmentInteration(pojoInterface);
+                    MediaPlayer mp = MediaPlayer.create(context, R.raw.song);
+                    mp.start();
                 }
             }
         });
@@ -79,22 +84,20 @@ public class SongRecyclerViewAdapter extends RecyclerView.Adapter<SongRecyclerVi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final ImageView mSongAnchor;
+        public final ImageView mSongImage;
+        public final TextView mSongName;
+
         public Song mItem;
-        public Button play;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
-            play = (Button) view.findViewById(R.id.play_button);
+            mSongAnchor = (ImageView) view.findViewById(R.id.songAnchor);
+            mSongImage = (ImageView) view.findViewById(R.id.songImage);
+            mSongName = (TextView) view.findViewById(R.id.songName);
+
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
     }
 }

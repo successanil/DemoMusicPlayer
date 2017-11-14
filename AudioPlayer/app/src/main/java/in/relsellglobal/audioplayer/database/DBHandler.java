@@ -71,7 +71,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_SONG_TABLE);
 
         String CREATE_Album_TABLE = "CREATE TABLE " + AlbumTable.TABLE + "("
-                + AlbumTable.KEY_ID + " INTEGER PRIMARY KEY," + AlbumTable.KEY_NAME + " TEXT,"
+                + AlbumTable.KEY_ID + " INTEGER PRIMARY KEY," + AlbumTable.KEY_NAME + " TEXT"
                 + " )";
         db.execSQL(CREATE_Album_TABLE);
 
@@ -85,12 +85,12 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addAlbumData(Song obj) {
+    public void addAlbumData(Album obj) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(AlbumTable.KEY_NAME, obj.getSongName());
+        values.put(AlbumTable.KEY_NAME, obj.getAlbumName());
 
         // Inserting Row
         db.insert(AlbumTable.TABLE, null, values);
