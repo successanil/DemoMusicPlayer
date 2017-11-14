@@ -40,6 +40,16 @@ public class DBTester extends AppCompatActivity {
             album1.setAlbumName("Michel Buble");
             db.addAlbumData(album1);
 
+            Album album2 = new Album();
+            album2.setAlbumName("Western Life");
+            db.addAlbumData(album2);
+
+            Album album3 = new Album();
+            album3.setAlbumName("KSHMR");
+            db.addAlbumData(album3);
+
+
+
 
             Song song1 = new Song();
             song1.setSongName("Feeling Good");
@@ -54,7 +64,30 @@ public class DBTester extends AppCompatActivity {
             db.addSongData(song2);
 
 
+            Song song3 = new Song();
+            song3.setSongName("Feeling Good");
+            song3.setSongDescription("/storage/emulated/0/Download/feeling_good.mp3");
+            song3.setAlbum("2");
+            db.addSongData(song1);
 
+
+            Song song4 = new Song();
+            song4.setSongName("Sorry");
+            song4.setSongDescription("/storage/emulated/0/Download/feeling_good.mp3");
+            song4.setAlbum("2");
+            db.addSongData(song2);
+
+            Song song5 = new Song();
+            song5.setSongName("Sorry");
+            song5.setSongDescription("/storage/emulated/0/Download/feeling_good.mp3");
+            song5.setAlbum("3");
+            db.addSongData(song2);
+
+            Song song6 = new Song();
+            song6.setSongName("Feeling Good");
+            song6.setSongDescription("/storage/emulated/0/Download/feeling_good.mp3");
+            song6.setAlbum("3");
+            db.addSongData(song1);
 
 
 
