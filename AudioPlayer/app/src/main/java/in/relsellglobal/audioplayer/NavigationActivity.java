@@ -71,6 +71,7 @@ public class NavigationActivity extends AppCompatActivity
 
         FragmentManager fm1 = getSupportFragmentManager();
         FragmentTransaction ft1 = fm1.beginTransaction();
+        ft1.setCustomAnimations(R.anim.enter, R.anim.exit);
         ft1.replace(R.id.contentLayout, new AlbumListFragment());
 
         ft1.commit();
@@ -184,17 +185,24 @@ public class NavigationActivity extends AppCompatActivity
 
         if(pojoInterface instanceof Album) {
 
+            /*Toolbar toolbar = new Toolbar(NavigationActivity.this);
+            toolbar.setTitle("Albums");*/
+
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
+            ft.setCustomAnimations(R.anim.enter, R.anim.exit);
             ft.replace(R.id.contentLayout,new AlbumDetailFragment());
             ft.addToBackStack(null);
             ft.commit();
 
 
         } else if(pojoInterface instanceof Song) {
+            /*Toolbar toolbar = new Toolbar(NavigationActivity.this);
+            toolbar.setTitle("Songs");*/
             Toast.makeText(this, "Just clicked the song", Toast.LENGTH_SHORT).show();
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
+            ft.setCustomAnimations(R.anim.enter, R.anim.exit);
             ft.replace(R.id.contentLayout,new MusicPlayerFragment());
             ft.addToBackStack(null);
             ft.commit();

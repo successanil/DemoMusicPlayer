@@ -27,7 +27,7 @@ public class SplashScreen extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            for(int i=0;i<300;i++) {
+            for(int i=0;i<100;i++) {
                 // no task
                 try {
                     Thread.sleep(10);
